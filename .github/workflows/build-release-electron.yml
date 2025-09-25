@@ -67,3 +67,4 @@ jobs:
             packages/gui/out/**/Deemix*Setup.exe
             packages/gui/out/make/zip/**/*.zip
             packages/gui/out/make/deb/**/*.deb
+            packages/gui/out/make/rpm/**/*.rpm

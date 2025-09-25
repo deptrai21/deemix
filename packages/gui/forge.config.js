@@ -38,6 +38,18 @@ export default {
 				},
 			},
 		},
+		{
+			name: "@electron-forge/maker-rpm",
+			config: {
+				options: {
+					name: "deemix",
+					productName: "Deemix",
+					section: "sound",
+					icon: "./build/icon.ico",
+					categories: ["Audio"],
+				},
+			},
+		},
 	],
 	plugins: [
 		{
