@@ -1,5 +1,18 @@
 # deemix
 
+## 3.13.5
+
+### Patch Changes
+
+- Updated dependencies [9388fd1]
+  - deezer-sdk@1.10.1
+
+## 3.13.4
+
+### Patch Changes
+
+- fdd11fd: Fix typo and automatically correct invalid ISRC IDs
+
 ## 3.13.3
 
 ### Patch Changes

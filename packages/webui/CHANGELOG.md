@@ -1,5 +1,40 @@
 # deemix-webui
 
+## 4.5.0
+
+### Minor Changes
+
+- 2d3aeb3: Add mobile responsive UI with hamburger menu and download sheet
+
+## 4.4.1
+
+### Patch Changes
+
+- 02cdb0f: fix the update check (#238)
+- 43eb13c: missing PreviewControls when hovering over the track cover
+- e11cf95: center artist names (favorites tab)
+- 8cb72b6: fix missing number of tracks in album during the search (#244)
+- Updated dependencies [9388fd1]
+  - deezer-sdk@1.10.1
+  - deemix@3.13.5
+
+## 4.4.0
+
+### Minor Changes
+
+- a0b3fc8: - Added two env vars for disabling chown on container init for data and music directories: DISABLE_OWNERSHIP_CHECK_MUSIC and DISABLE_OWNERSHIP_CHECK_DATA
+  - Using DISABLE_OWNERSHIP_CHECK now disables chown for both directories as expected
+
+### Patch Changes
+
+- 49b7795: - optimize component handling with markRaw in search tabs
+  - fix "change country" button on the charts page
+  - add space between the buttons on the charts page
+  - handle undefined MouseEvent
+  - center the preview controls
+- Updated dependencies [fdd11fd]
+  - deemix@3.13.4
+
 ## 4.3.5
 
 ### Patch Changes
