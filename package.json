@@ -17,6 +17,7 @@
 		"test": "turbo run test",
 		"package": "turbo run package",
 		"make": "turbo run make",
+		"make:gui:rpm": "pnpm --filter=deemix-gui run make:rpm",
 		"compile:cli": "turbo run deemix-cli#compile",
 		"ci": "turbo run lint type-check build test",
 		"clean": "rimraf .turbo node_modules --glob **/dist **/out **/node_modules **/.turbo **/tsconfig.tsbuildinfo",
