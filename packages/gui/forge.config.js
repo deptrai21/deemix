@@ -38,6 +38,18 @@ export default {
 				},
 			},
 		},
+		{
+			name: "@electron-forge/maker-rpm",
+			config: {
+				options: {
+					name: "deemix",
+					productName: "Deemix",
+					summary: "A standalone electron app that wraps deemix-webui",
+					icon: "./build/64x64.png",
+					categories: ["AudioVideo", "Audio"],
+				},
+			},
+		},
 	],
 	plugins: [
 		{

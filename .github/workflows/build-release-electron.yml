@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - deemix-gui@*
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -53,10 +54,24 @@ jobs:
       - name: Set PYTHON env var
         run: echo "PYTHON=$(which python)" >> $GITHUB_ENV
 
+      - name: Install RPM build tools
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter=deemix-gui exec pnpm electron-rebuild
 
       - run: pnpm make
+
+      - name: Upload RPM Artifact (Workflow)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: deemix-gui-rpm-${{ github.run_number }}
+          path: packages/gui/out/make/rpm/**/*.rpm
+          if-no-files-found: error
 
       - name: Upload Artifacts
         uses: softprops/action-gh-release@v2
@@ -67,3 +82,4 @@ jobs:
             packages/gui/out/**/Deemix*Setup.exe
             packages/gui/out/make/zip/**/*.zip
             packages/gui/out/make/deb/**/*.deb
+            packages/gui/out/make/rpm/**/*.rpm

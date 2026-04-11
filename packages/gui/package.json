@@ -13,6 +13,7 @@
 		"build": "node ./scripts/build.js --mode production",
 		"package": "electron-forge package",
 		"make": "electron-forge make",
+		"make:rpm": "electron-forge make --platform=linux --arch=x64 --targets=@electron-forge/maker-rpm",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit"
 	},
