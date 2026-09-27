@@ -3,9 +3,6 @@ FROM node:24-alpine AS base
 ARG TURBO_TEAM
 ENV TURBO_TEAM=$TURBO_TEAM
 
-ARG TURBO_TOKEN
-ENV TURBO_TOKEN=$TURBO_TOKEN
-
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME/bin:$PATH"
 RUN corepack enable
@@ -20,7 +17,7 @@ COPY . .
 
 RUN pnpm install -g turbo
 
-RUN turbo prune deemix-webui --docker
+RUN turbo prune deemix-webui deemix-cli --docker
 
 FROM base AS installer
 
@@ -32,7 +29,8 @@ RUN pnpm install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
 
-RUN pnpm turbo build --filter=deemix-webui...
+RUN --mount=type=secret,id=turbo_token,env=TURBO_TOKEN \
+    pnpm turbo build --filter=deemix-webui... --filter=deemix-cli...
 
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS runner
 
@@ -45,6 +43,7 @@ COPY --chown=root:root docker/ /
 ENV DEEMIX_DATA_DIR=/config/
 ENV DEEMIX_MUSIC_DIR=/downloads/
 ENV DEEMIX_SERVER_PORT=6595
+ENV DEEMIX_SINGLE_USER=true
 ENV DEEMIX_HOST=0.0.0.0
 ENV NODE_ENV=production
 
